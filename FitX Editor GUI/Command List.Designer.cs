@@ -44,8 +44,8 @@
             this.cmdID = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.generator = new System.Windows.Forms.DataGridView();
             this.genCmd = new System.Windows.Forms.Button();
+            this.generator = new System.Windows.Forms.DataGridView();
             this.genArgs = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.genParam = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
@@ -221,6 +221,16 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Generator";
             // 
+            // genCmd
+            // 
+            this.genCmd.Location = new System.Drawing.Point(6, 417);
+            this.genCmd.Name = "genCmd";
+            this.genCmd.Size = new System.Drawing.Size(268, 30);
+            this.genCmd.TabIndex = 1;
+            this.genCmd.Text = "Generate Command";
+            this.genCmd.UseVisualStyleBackColor = true;
+            this.genCmd.Click += new System.EventHandler(this.genCmd_Click);
+            // 
             // generator
             // 
             this.generator.AllowUserToAddRows = false;
@@ -236,18 +246,9 @@
             this.generator.Location = new System.Drawing.Point(6, 19);
             this.generator.MultiSelect = false;
             this.generator.Name = "generator";
+            this.generator.RowHeadersWidth = 4;
             this.generator.Size = new System.Drawing.Size(268, 391);
             this.generator.TabIndex = 0;
-            // 
-            // genCmd
-            // 
-            this.genCmd.Location = new System.Drawing.Point(6, 417);
-            this.genCmd.Name = "genCmd";
-            this.genCmd.Size = new System.Drawing.Size(268, 30);
-            this.genCmd.TabIndex = 1;
-            this.genCmd.Text = "Generate Command";
-            this.genCmd.UseVisualStyleBackColor = true;
-            this.genCmd.Click += new System.EventHandler(this.genCmd_Click);
             // 
             // genArgs
             // 
@@ -257,7 +258,7 @@
             this.genArgs.ReadOnly = true;
             this.genArgs.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.genArgs.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.genArgs.Width = 125;
+            this.genArgs.Width = 162;
             // 
             // genParam
             // 

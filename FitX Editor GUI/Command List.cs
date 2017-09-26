@@ -43,44 +43,57 @@ namespace FitX_Editor_GUI
             args.Text = commandArgs[UInt32.Parse(cmdList.SelectedNode.Name)].ToString().Replace(",", ", ");
             desc.Text = commandDescriptions[UInt32.Parse(cmdList.SelectedNode.Name)].ToString();
             string[] argList = commandArgs[UInt32.Parse(cmdList.SelectedNode.Name)].ToString().Split(',');
-            string[] argTypeList = commandArgTypes[UInt32.Parse(cmdList.SelectedNode.Name)].Replace("0", "Int").Replace("1", "Decimal").Replace("2", "Float").Split(',');
+            string[] argTypeList = commandArgTypes[UInt32.Parse(cmdList.SelectedNode.Name)].Split(',');
             generator.Rows.Clear();
-            for (int i = 0; i < argList.Length; i++)
+            try
             {
-                generator.Rows.Add(argList[i]);
-                generator.Rows[i].Cells[1].Value = 0;
-                if (argTypeList[i] == "Int")
+                if (args.Text != "")
                 {
-                    generator.Rows[i].Cells[1].Tag = "Int";
+                    for (int i = 0; i < argList.Length; i++)
+                    {
+                        generator.Rows.Add(argList[i]);
+                        generator.Rows[i].Cells[1].Value = 0;
+                        if (argTypeList[i] == "0")
+                        {
+                            generator.Rows[i].Cells[1].Tag = "Int";
+                        }
+                        if (argTypeList[i] == "1" || argTypeList[i] == "2")
+                        {
+                            generator.Rows[i].Cells[1].Tag = "Float";
+                        }
+                    }
                 }
-                if (argTypeList[i] == "Float" || argTypeList[i] == "Decimal")
-                {
-                    generator.Rows[i].Cells[1].Tag = "Float";
-                }
+            }
+            catch
+            {
+
             }
         }
 
         private void genCmd_Click(object sender, EventArgs e)
         {
-            string command = cmdName + "(";
-            for (int i = 0; i < generator.Rows.Count; i++)
+            string command = cmdName.Text + "(";
+            if (args.Text != "")
             {
-                command = command + generator.Rows[i].Cells[0].Value.ToString() + "=";
-                if (generator.Rows[i].Cells[1].Tag.ToString() == "Int")
+                for (int i = 0; i < generator.Rows.Count; i++)
                 {
-                    command = command + "0x" + UInt32.Parse(generator.Rows[i].Cells[1].Value.ToString()).ToString("X");
-                }
-                if (generator.Rows[i].Cells[1].Tag.ToString() == "Float")
-                {
-                    command = command + generator.Rows[i].Cells[1].Value;
-                }
-                if (i < generator.Rows.Count - 1)
-                {
-                    command = command + ",";
+                    command = command + generator.Rows[i].Cells[0].Value.ToString() + "=";
+                    if (generator.Rows[i].Cells[1].Tag.ToString() == "Int")
+                    {
+                        command = command + "0x" + UInt32.Parse(generator.Rows[i].Cells[1].Value.ToString()).ToString("X");
+                    }
+                    if (generator.Rows[i].Cells[1].Tag.ToString() == "Float")
+                    {
+                        command = command + generator.Rows[i].Cells[1].Value;
+                    }
+                    if (i < generator.Rows.Count - 1)
+                    {
+                        command = command + ",";
+                    }
                 }
             }
             command = command + ")";
-            Clipboard.SetText(command.Replace("System.Windows.Forms.TextBox, Text: ", ""));
+            Clipboard.SetText(command);
             MessageBox.Show("Command copied to clipboard", "FitX Text Editor");
         }
     }
