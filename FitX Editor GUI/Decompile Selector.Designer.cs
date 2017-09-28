@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Body");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Weapons");
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Body");
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Weapons");
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.scripts = new System.Windows.Forms.TreeView();
             this.button1 = new System.Windows.Forms.Button();
+            this.scripts = new System.Windows.Forms.TreeView();
+            this.label1 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -49,6 +49,33 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Scripts";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(5, 385);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(415, 23);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "Done";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // scripts
+            // 
+            this.scripts.CheckBoxes = true;
+            this.scripts.Location = new System.Drawing.Point(6, 37);
+            this.scripts.Name = "scripts";
+            treeNode5.Checked = true;
+            treeNode5.Name = "Body";
+            treeNode5.Text = "Body";
+            treeNode6.Checked = true;
+            treeNode6.Name = "Weapons";
+            treeNode6.Text = "Weapons";
+            this.scripts.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
+            treeNode5,
+            treeNode6});
+            this.scripts.Size = new System.Drawing.Size(413, 341);
+            this.scripts.TabIndex = 1;
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -57,33 +84,6 @@
             this.label1.Size = new System.Drawing.Size(184, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Please select the scripts to decompile";
-            // 
-            // scripts
-            // 
-            this.scripts.CheckBoxes = true;
-            this.scripts.Location = new System.Drawing.Point(6, 37);
-            this.scripts.Name = "scripts";
-            treeNode1.Checked = true;
-            treeNode1.Name = "Body";
-            treeNode1.Text = "Body";
-            treeNode2.Checked = true;
-            treeNode2.Name = "Weapons";
-            treeNode2.Text = "Weapons";
-            this.scripts.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode2});
-            this.scripts.Size = new System.Drawing.Size(413, 341);
-            this.scripts.TabIndex = 1;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(7, 385);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(412, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Done";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Decompile_Selector
             // 

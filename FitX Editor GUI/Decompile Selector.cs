@@ -31,9 +31,10 @@ namespace FitX_Editor_GUI
             {
                 for (int i = 0; i < editor.weapons.Count; i++)
                 {
-                    scripts.Nodes[1].Nodes.Add(editor.weapons.ToArray()[i]);
+                    scripts.Nodes[1].Nodes.Add(editor.weapons[i]);
                     scripts.Nodes[1].Nodes[i].Checked = true;
                 }
+                scripts.Nodes[1].Checked = true;
             }
             if (editor.weapons.Count == 0)
             {

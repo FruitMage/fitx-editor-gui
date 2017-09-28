@@ -55,11 +55,11 @@ namespace FitX_Editor_GUI
                         generator.Rows[i].Cells[1].Value = 0;
                         if (argTypeList[i] == "0")
                         {
-                            generator.Rows[i].Cells[1].Tag = "Int";
+                            generator.Rows[i].Cells[0].Tag = "Int";
                         }
                         if (argTypeList[i] == "1" || argTypeList[i] == "2")
                         {
-                            generator.Rows[i].Cells[1].Tag = "Float";
+                            generator.Rows[i].Cells[0].Tag = "Float";
                         }
                     }
                 }
@@ -72,29 +72,36 @@ namespace FitX_Editor_GUI
 
         private void genCmd_Click(object sender, EventArgs e)
         {
-            string command = cmdName.Text + "(";
-            if (args.Text != "")
+            try
             {
-                for (int i = 0; i < generator.Rows.Count; i++)
+                string command = cmdName.Text + "(";
+                if (args.Text != "")
                 {
-                    command = command + generator.Rows[i].Cells[0].Value.ToString() + "=";
-                    if (generator.Rows[i].Cells[1].Tag.ToString() == "Int")
+                    for (int i = 0; i < generator.Rows.Count; i++)
                     {
-                        command = command + "0x" + UInt32.Parse(generator.Rows[i].Cells[1].Value.ToString()).ToString("X");
-                    }
-                    if (generator.Rows[i].Cells[1].Tag.ToString() == "Float")
-                    {
-                        command = command + generator.Rows[i].Cells[1].Value;
-                    }
-                    if (i < generator.Rows.Count - 1)
-                    {
-                        command = command + ",";
+                        command = command + generator.Rows[i].Cells[0].Value.ToString() + "=";
+                        if (generator.Rows[i].Cells[0].Tag.ToString() == "Int")
+                        {
+                            command = command + "0x" + UInt32.Parse(generator.Rows[i].Cells[1].Value.ToString()).ToString("X");
+                        }
+                        if (generator.Rows[i].Cells[0].Tag.ToString() == "Float")
+                        {
+                            command = command + generator.Rows[i].Cells[1].Value;
+                        }
+                        if (i < generator.Rows.Count - 1)
+                        {
+                            command = command + ",";
+                        }
                     }
                 }
+                command = command + ")";
+                Clipboard.SetText(command);
+                MessageBox.Show("Command copied to clipboard", "FitX Text Editor");
             }
-            command = command + ")";
-            Clipboard.SetText(command);
-            MessageBox.Show("Command copied to clipboard", "FitX Text Editor");
+            catch
+            {
+                MessageBox.Show("Unknown error.", "FitX Text Editor");
+            }
         }
     }
 }

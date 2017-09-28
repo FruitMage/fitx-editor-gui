@@ -33,18 +33,25 @@ namespace FitX_Editor_GUI
             openFighter.EnsurePathExists = true;
             if (openFighter.ShowDialog() == CommonFileDialogResult.Ok)
             {
-                if (Directory.Exists(openFighter.FileName + "\\script\\animcmd\\weapon"))
+                if (Directory.Exists(openFighter.FileName + "\\motion") && Directory.Exists(openFighter.FileName + "\\script\\animcmd\\body"))
                 {
-                    for (int i = 0; i < Directory.GetDirectories(openFighter.FileName + "\\script\\animcmd\\weapon").Length; i++)
+                    if (Directory.Exists(openFighter.FileName + "\\script\\animcmd\\weapon"))
                     {
-                        weapons.Add(Directory.GetDirectories(openFighter.FileName + "\\script\\animcmd\\weapon")[i] + "\\motion.mtable");
-                        Console.WriteLine(weapons[i]);
+                        for (int i = 0; i < Directory.GetDirectories(openFighter.FileName + "\\script\\animcmd\\weapon").Length; i++)
+                        {
+                            weapons.Add(Directory.GetDirectories(openFighter.FileName + "\\script\\animcmd\\weapon")[i] + "\\motion.mtable");
+                            Console.WriteLine(weapons[i]);
+                        }
                     }
+                    bodyAcmd = openFighter.FileName + "\\script\\animcmd\\body\\motion.mtable";
+                    motion = openFighter.FileName + "\\motion";
+                    Decompile_Selector decomp = new Decompile_Selector();
+                    decomp.ShowDialog();
                 }
-                bodyAcmd = openFighter.FileName + "\\script\\animcmd\\body\\motion.mtable";
-                Decompile_Selector decomp = new Decompile_Selector();
-                motion = openFighter.FileName + "\\motion";
-                decomp.Show();
+                else
+                {
+                    MessageBox.Show("Not a valid folder", "FitX Text Editor");
+                }
             }
         }
 
