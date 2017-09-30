@@ -103,7 +103,6 @@ namespace FitX_Editor_GUI
             {
                 animcmd.Nodes[0].Nodes.Add(i.ToString("X") + " - " + entries[i]);
                 animcmd.Nodes[0].Nodes[i].Name = entries[i];
-                Console.WriteLine(animcmd.Nodes[0].Nodes[i].Name);
             }
             animcmd.Nodes[0].Expand();
             scriptsContainer.Enabled = true;
@@ -131,7 +130,7 @@ namespace FitX_Editor_GUI
 
         private void animcmd_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            if (!animcmd.SelectedNode.Name.StartsWith("entry"))
+            if (!animcmd.SelectedNode.Name.EndsWith("Entries"))
             {
                 if (File.Exists(decompiledFighterDir + "\\animcmd\\" + animcmd.SelectedNode.Name + ".acm"))
                 {
@@ -177,6 +176,32 @@ namespace FitX_Editor_GUI
         {
             Command_List cmdList = new Command_List();
             cmdList.Show();
+        }
+
+        public void AddScript()
+        {
+            Console.WriteLine(decompiledFighterDir);
+            Add_Script addScript = new Add_Script();
+            List<string> mlist = File.ReadAllLines(decompiledFighterDir + "\\fighter.mlist").ToList<string>();
+            mlist.Add(addScript.newScript.Text);
+            string[] script = {"MoveDef " + addScript.newScript.Text,
+                    "   Main()",
+                    "   {",
+                    "   }\n",
+                    "   Effect()",
+                    "   {",
+                    "   }\n",
+                    "   Sound()",
+                    "   {",
+                    "   }\n",
+                    "   Expression()",
+                    "   {",
+                    "   }"};
+            File.WriteAllLines(Directory.GetCurrentDirectory() + decompiledFighterDir + "\\fighter.mlist", mlist);
+            File.Create(Directory.GetCurrentDirectory() + decompiledFighterDir + "\\animcmd\\" + addScript.newScript.Text + ".acm");
+            File.WriteAllLines(Directory.GetCurrentDirectory() + decompiledFighterDir + "\\animcmd\\" + addScript.newScript.Text + ".acm", script);
+            GetScripts(decompiledFighterDir);
+            addScript.Close();
         }
     }
 }

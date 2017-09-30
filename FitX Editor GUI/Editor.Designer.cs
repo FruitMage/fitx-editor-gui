@@ -79,7 +79,7 @@
             this.decompiledFighterToolStripMenuItem});
             this.openFile.Name = "openFile";
             this.openFile.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.openFile.Size = new System.Drawing.Size(152, 22);
+            this.openFile.Size = new System.Drawing.Size(146, 22);
             this.openFile.Text = "Open";
             // 
             // compiledFighterToolStripMenuItem
@@ -100,7 +100,7 @@
             // 
             this.saveFile.Name = "saveFile";
             this.saveFile.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saveFile.Size = new System.Drawing.Size(152, 22);
+            this.saveFile.Size = new System.Drawing.Size(146, 22);
             this.saveFile.Text = "Save";
             // 
             // toolsToolStripMenuItem
@@ -189,9 +189,9 @@
             // 
             this.animcmd.Location = new System.Drawing.Point(7, 19);
             this.animcmd.Name = "animcmd";
-            treeNode1.Name = "Body";
+            treeNode1.Name = "bodyEntries";
             treeNode1.Text = "Body";
-            treeNode2.Name = "Weapons";
+            treeNode2.Name = "weaponEntries";
             treeNode2.Text = "Weapons";
             this.animcmd.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode1,
