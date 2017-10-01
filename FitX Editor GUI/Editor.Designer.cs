@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Body");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Weapons");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Body");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Weapons");
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.file = new System.Windows.Forms.ToolStripMenuItem();
             this.openFile = new System.Windows.Forms.ToolStripMenuItem();
@@ -39,7 +39,7 @@
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.commandListButton = new System.Windows.Forms.ToolStripMenuItem();
             this.scriptsContainer = new System.Windows.Forms.GroupBox();
-            this.button2 = new System.Windows.Forms.Button();
+            this.rmScript = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.sortAlphabet = new System.Windows.Forms.RadioButton();
@@ -120,7 +120,7 @@
             // 
             // scriptsContainer
             // 
-            this.scriptsContainer.Controls.Add(this.button2);
+            this.scriptsContainer.Controls.Add(this.rmScript);
             this.scriptsContainer.Controls.Add(this.button1);
             this.scriptsContainer.Controls.Add(this.label1);
             this.scriptsContainer.Controls.Add(this.sortAlphabet);
@@ -134,14 +134,15 @@
             this.scriptsContainer.TabStop = false;
             this.scriptsContainer.Text = "Scripts";
             // 
-            // button2
+            // rmScript
             // 
-            this.button2.Location = new System.Drawing.Point(131, 575);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(91, 23);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "Remove Script";
-            this.button2.UseVisualStyleBackColor = true;
+            this.rmScript.Location = new System.Drawing.Point(131, 575);
+            this.rmScript.Name = "rmScript";
+            this.rmScript.Size = new System.Drawing.Size(91, 23);
+            this.rmScript.TabIndex = 5;
+            this.rmScript.Text = "Remove Script";
+            this.rmScript.UseVisualStyleBackColor = true;
+            this.rmScript.Click += new System.EventHandler(this.rmScript_Click);
             // 
             // button1
             // 
@@ -189,13 +190,13 @@
             // 
             this.animcmd.Location = new System.Drawing.Point(7, 19);
             this.animcmd.Name = "animcmd";
-            treeNode1.Name = "bodyEntries";
-            treeNode1.Text = "Body";
-            treeNode2.Name = "weaponEntries";
-            treeNode2.Text = "Weapons";
+            treeNode3.Name = "bodyEntries";
+            treeNode3.Text = "Body";
+            treeNode4.Name = "weaponEntries";
+            treeNode4.Text = "Weapons";
             this.animcmd.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode2});
+            treeNode3,
+            treeNode4});
             this.animcmd.Size = new System.Drawing.Size(215, 518);
             this.animcmd.TabIndex = 0;
             this.animcmd.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.animcmd_AfterSelect);
@@ -262,7 +263,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.RadioButton sortAlphabet;
         private System.Windows.Forms.RadioButton sortAcmd;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button rmScript;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ToolStripMenuItem compiledFighterToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem decompiledFighterToolStripMenuItem;

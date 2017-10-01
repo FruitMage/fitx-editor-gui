@@ -98,7 +98,7 @@ namespace FitX_Editor_GUI
         public void GetScripts(string directory)
         {
             animcmd.Nodes[0].Nodes.Clear();
-            string[] entries = File.ReadAllLines(directory + "\\fighter.mlist");
+            string[] entries = File.ReadAllLines(this.decompiledFighterDir + "\\fighter.mlist");
             for (int i = 0; i < entries.Length; i++)
             {
                 animcmd.Nodes[0].Nodes.Add(i.ToString("X") + " - " + entries[i]);
@@ -119,7 +119,7 @@ namespace FitX_Editor_GUI
                 if (File.Exists(openFighter.FileName + "\\fighter.mlist") && Directory.Exists(openFighter.FileName + "\\animcmd"))
                 {
                     decompiledFighterDir = openFighter.FileName;
-                    GetScripts(openFighter.FileName);
+                    GetScripts(decompiledFighterDir);
                 }
                 else
                 {
@@ -168,7 +168,9 @@ namespace FitX_Editor_GUI
 
         private void button1_Click(object sender, EventArgs e)
         {
+            Console.WriteLine(decompiledFighterDir);
             Add_Script addScript = new Add_Script();
+            addScript.dir = decompiledFighterDir;
             addScript.Show();
         }
 
@@ -178,30 +180,19 @@ namespace FitX_Editor_GUI
             cmdList.Show();
         }
 
-        public void AddScript()
+        private void rmScript_Click(object sender, EventArgs e)
         {
-            Console.WriteLine(decompiledFighterDir);
-            Add_Script addScript = new Add_Script();
-            List<string> mlist = File.ReadAllLines(decompiledFighterDir + "\\fighter.mlist").ToList<string>();
-            mlist.Add(addScript.newScript.Text);
-            string[] script = {"MoveDef " + addScript.newScript.Text,
-                    "   Main()",
-                    "   {",
-                    "   }\n",
-                    "   Effect()",
-                    "   {",
-                    "   }\n",
-                    "   Sound()",
-                    "   {",
-                    "   }\n",
-                    "   Expression()",
-                    "   {",
-                    "   }"};
-            File.WriteAllLines(Directory.GetCurrentDirectory() + decompiledFighterDir + "\\fighter.mlist", mlist);
-            File.Create(Directory.GetCurrentDirectory() + decompiledFighterDir + "\\animcmd\\" + addScript.newScript.Text + ".acm");
-            File.WriteAllLines(Directory.GetCurrentDirectory() + decompiledFighterDir + "\\animcmd\\" + addScript.newScript.Text + ".acm", script);
+            List<string> scriptList = File.ReadAllLines(decompiledFighterDir + "\\fighter.mlist").ToList<string>();
+            for (int i = 0; i < scriptList.Count; i++)
+            {
+                if (scriptList[i] == animcmd.SelectedNode.Name)
+                {
+                    scriptList.RemoveAt(i);
+                    File.WriteAllLines(decompiledFighterDir + "\\fighter.mlist", scriptList);
+                }
+            }
+            File.Delete(decompiledFighterDir + "\\animcmd\\" + animcmd.SelectedNode.Name + ".acm");
             GetScripts(decompiledFighterDir);
-            addScript.Close();
         }
     }
 }
